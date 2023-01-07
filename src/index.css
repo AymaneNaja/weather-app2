@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Courgette&family=Dancing+Script:wght@700&family=Petit+Formal+Script&family=Secular+One&family=Source+Code+Pro:wght@500&display=swap')
+.body{
+    height:'100%';
+}
+
+
+.bg-img-cover{
+    background-image:url('https://i.pinimg.com/564x/74/5d/2e/745d2e7ad52fce0e8de00733bf282e61.jpg');
+    background-size:cover
+}
+
+@keyframes showSide {
+    0%{
+        left:-250px;
+        opacity:0.8
+    }
+    100%{
+        left:-0px;
+
+        opacity:1
+    }
+}
+@keyframes hideSide {
+    0%{
+        left:-0px;
+        opacity:1
+    }
+    100%{
+        left:-250px;
+        opacity:0.9
+    }
+}
+
+.sidebar-show{
+    position: fixed;
+    width:250px ;
+    transition: all;
+    z-index:100;
+    background-color: white;
+    animation:  showSide forwards 800ms ;
+}
+.sidebar-hide{
+    position: fixed;
+    width:250px ;
+    transition: all;
+    z-index: 100;
+    animation: hideSide forwards 500ms ;
+    background-color: white;
+
+}
+
+@media (min-width: 600px) {
+    .hideitem{
+        display: none;
+    }
+}
+
+
+      
+.rsis-image{
+        background-size: cover !important ;
+        border-radius: 10px !important;
+        background-position: center !important;
+        }
+.Alkalomi{
+    font-family: 'Alkalami', serif;
+
+}
+      
