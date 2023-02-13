@@ -1,42 +1,28 @@
 import { useState } from 'react'
 import './App.css'
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom'
-import Home from './Components/Home/Home'
-import LogIn from './Components/LogIn'
-import Navbar from './Components/NavBar/Navbar'
-
-import Categories from './Components/Categories/Categories'
-import Products from './Components/Products/Products'
-import Sidebar from './Components/NavBar/SideBar'
-import { useSelector } from 'react-redux'
-import { UserData } from './Slices/AuthSlice'
-import SingleCategory from './Components/Categories/SingleCategory'
-import Footer from './Components/footer/Footer'
-import SingleProduct from './Components/Products/SingleProduct'
-import Cart from './Components/Cart/Cart'
-import SignUp from './Components/SignUp'
+import { Map, Marker } from "pigeon-maps"
+import { osm } from 'pigeon-maps/providers'
+import WeatherNow from './Components/WeatherNow/WeatherNow'
+import WeatherWeek from './Components/WeatherWeek/WeatherWeek'
+import WeatherToday from './Components/WeatherToday/WeatherToday'
+import Search from './Components/SearchCity/Search'
+import WeatherMap from './Components/WeatherNow/WeatherMap'
+import { useGetWeatherforcastQuery } from './services/weatherApi'
+import { ClipLoader } from 'react-spinners'
 
 function App() {
-  const [toogleSidebar, setToggleSidebar] = useState(false)
-  const { user } = useSelector(UserData)
+  const [cityname, setCityName] = useState('paris')
+  const [metric, setMetric] = useState("C")
+  const { data, isLoading, isSuccess, isError } = useGetWeatherforcastQuery(cityname)
+
   return (
-    <div className="">
-      <Router>
-        <Sidebar toggleSidebar={toogleSidebar} setToggleSidebar={setToggleSidebar} />
-        <Navbar setToggleSidebar={setToggleSidebar} />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          {!user ? <Route path='logIn' element={<LogIn />} /> : null}
-          {!user ? <Route path='Signup' element={<SignUp />} /> : null}
-          <Route path='/Products' element={<Products />} />
-          <Route path='/Products' element={<Products />} />
-          <Route path='/categories' element={<Categories />} />
-          <Route path='categories/:id' element={<SingleCategory />} />
-          <Route path='product/:id' element={<SingleProduct />} />
-          <Route path='/cart' element={<Cart />} />
-        </Routes>
-        <Footer />
-      </Router>
+    <div className=" grid justify-center items-center gap-2 py-5  bg-gray-200 min-h-screen">
+      {isLoading ? <p>fuck</p> : null}
+      <Search setCityName={setCityName} />
+      <WeatherNow isError={isError} isLoading={isLoading} isSuccess={isSuccess} data={data} metric={metric} setMetric={setMetric} />
+      {isSuccess ? <div className='gap-2 grid'><WeatherMap key={Math.random()} cityname={cityname} isLoading={isLoading} isSuccess={isSuccess} data={data} />
+        <WeatherToday data={data} isError={isError} isLoading={isLoading} isSuccess={isSuccess} metric={metric} setMetric={setMetric} />
+        <WeatherWeek data={data} isError={isError} isLoading={isLoading} isSuccess={isSuccess} metric={metric} setMetric={setMetric} /></div> : null}
     </div>
   )
 }

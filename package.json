@@ -12,8 +12,11 @@
     "@popperjs/core": "^2.11.6",
     "@reduxjs/toolkit": "^1.9.1",
     "@splidejs/react-splide": "^0.7.12",
-    "axios": "^1.2.1",
+    "axios": "^1.2.2",
+    "date-fns": "^2.29.3",
+    "pigeon-maps": "^0.21.3",
     "react": "^18.2.0",
+    "react-citypicker": "^1.0.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-pro-sidebar": "^1.0.0-alpha.9",
@@ -21,7 +24,7 @@
     "react-router": "^6.4.5",
     "react-router-dom": "^6.4.5",
     "react-simple-image-slider": "^2.4.1",
-    "react-spinners": "^0.13.7",
+    "react-spinners": "^0.13.8",
     "redux": "^4.2.0"
   },
   "devDependencies": {
