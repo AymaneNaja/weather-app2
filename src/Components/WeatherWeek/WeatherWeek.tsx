@@ -33,7 +33,7 @@ const WeatherWeek = ({ data, isError, isLoading, isSuccess, metric, setMetric }:
                     perPage: 3,
                     arrows: false
                 }}
-                className=''>{data.list.map(listitem => {
+                className=''>{data.list.map((listitem: any) => {
                     const date = new Date(listitem.dt_txt).getDate()
 
                     if (!dates.includes(date)) {
