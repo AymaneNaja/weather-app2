@@ -7,13 +7,16 @@ type Props = {
 }
 
 const Search = ({ setCityName }: Props) => {
-    const cityRef = useRef()
-    function onSearch(param) {
+    const cityRef = useRef<any>()
+    function onSearch(param: any) {
         setCityName(param)
     }
     return (
 
-        <div className={`bg-white w-9/12 min-w-fit  rounded-lg  flex items-center gap-1 justify-between p-2`}>
+        <form onSubmit={(e) => {
+            e.preventDefault()
+            onSearch(cityRef.current.value)
+        }} className={`bg-white w-9/12 min-w-fit  rounded-lg  flex items-center gap-1 justify-between p-2`}>
             <div className='flex justify-center  items-center p-1 '><AiOutlineSearch size={20} color='lightindigo' />
                 <input
                     ref={cityRef}
@@ -23,8 +26,11 @@ const Search = ({ setCityName }: Props) => {
                 ></input>
             </div>
 
-            <button onClick={() => onSearch(cityRef.current.value)} className='bg-indigo-400 p-2 rounded-lg text-white font-bold hover:text-indigo-400 border-indigo-400 border-2 transition-all hover:bg-white '>Search</button>
-        </div>
+            <button title='search' onClick={(e) => {
+                e.preventDefault()
+                onSearch(cityRef.current.value)
+            }} className='bg-indigo-400 p-2 rounded-lg text-white font-bold hover:text-indigo-400 border-indigo-400 border-2 transition-all hover:bg-white '>search</button>
+        </form>
     )
 }
 

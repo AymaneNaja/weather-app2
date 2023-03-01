@@ -17,7 +17,7 @@ const WeatherMap = ({ isLoading, isSuccess, data, cityname }: props) => {
     {isLoading ? <div className='w-full h-full bg-gray-200 flex justify-center items-center'><ClipLoader loading={isLoading} color={'orange'} /></div> : null}
     {isSuccess && !isLoading ? <Map mouseEvents={false} touchEvents={false} provider={osm} height={180} defaultCenter={[coord.lat, coord.lon]} defaultZoom={10}>
       <Marker width={50} anchor={[coord.lat, coord.lon]} height={200} />
-      <Marker defaultCenter={[coord.lat, coord.lon]} color={'gray'}
+      <Marker color={'gray'}
       />
     </Map> : null}
   </div>);

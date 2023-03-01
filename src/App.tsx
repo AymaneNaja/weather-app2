@@ -16,9 +16,10 @@ function App() {
   const { data, isLoading, isSuccess, isError } = useGetWeatherforcastQuery(cityname)
 
   return (
-    <div className=" grid justify-center items-center gap-2 py-5  bg-gray-200 min-h-screen">
-      {isLoading ? <p>fuck</p> : null}
+    <div className=" grid justify-center items-start gap-2 py-5  bg-gray-200 min-h-screen  m-auto w-full ">
       <Search setCityName={setCityName} />
+      {isLoading ? <div className=' p-14 w-full  h-80 rounded-xl shadow-sm border flex justify-center items-center  bg-slate-100 m '><ClipLoader loading={isLoading} size={50} color='orange' />
+      </div> : null}
       <WeatherNow isError={isError} isLoading={isLoading} isSuccess={isSuccess} data={data} metric={metric} setMetric={setMetric} />
       {isSuccess ? <div className='gap-2 grid'><WeatherMap key={Math.random()} cityname={cityname} isLoading={isLoading} isSuccess={isSuccess} data={data} />
         <WeatherToday data={data} isError={isError} isLoading={isLoading} isSuccess={isSuccess} metric={metric} setMetric={setMetric} />
