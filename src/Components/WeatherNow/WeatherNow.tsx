@@ -30,7 +30,8 @@ const WeatherNow = ({ metric, setMetric, data, isLoading, isSuccess, isError }: 
             <div className={data.list[0].sys.pod == 'd' ? 'p-6 w-9/12 bg-gradient-to-r from-[#f5f7ec] to-[#9eb8e9] rounded-xl shadow-sm border grid gap-3 ' : 'p-6 w-9/12 bg-gradient-to-r from-[#eef2ff] to-[#8c8add] rounded-xl shadow-sm border grid gap-3 '}>
                 <div className={'flex justify-between gap-32 items-center w-full '}>
                     <div className='grid  '>
-                        <WeatherNowTemp textSize={'5xl'} temp={data.list[0].main.temp} metric={metric} />
+
+                        <WeatherNowTemp textSize={'largest'} temp={data.list[0].main.temp} metric={metric} />
                         <WeatherAddress city={data.city.name} country={data.city.country} />
                     </div>
 
